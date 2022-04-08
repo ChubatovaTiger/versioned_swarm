@@ -11,6 +11,19 @@ To apply the patch, change the buildType with id = 'AShelve'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("AShelve")) {
+    check(type == BuildTypeSettings.Type.REGULAR) {
+        "Unexpected option value: type = $type"
+    }
+    type = BuildTypeSettings.Type.COMPOSITE
+
+    vcs {
+
+        check(showDependenciesChanges == false) {
+            "Unexpected option value: showDependenciesChanges = $showDependenciesChanges"
+        }
+        showDependenciesChanges = true
+    }
+
     features {
         val feature1 = find<CommitStatusPublisher> {
             commitStatusPublisher {
