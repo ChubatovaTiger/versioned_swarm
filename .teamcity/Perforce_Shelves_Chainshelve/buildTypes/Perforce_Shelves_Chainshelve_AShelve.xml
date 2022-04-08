@@ -9,6 +9,7 @@
       <option name="showDependenciesChanges" value="true" />
     </options>
     <disabled-settings>
+      <setting-ref ref="BUILD_EXT_1" />
       <setting-ref ref="RUNNER_1" />
       <setting-ref ref="RUNNER_2" />
       <setting-ref ref="RUNNER_3" />
