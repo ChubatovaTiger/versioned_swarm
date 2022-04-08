@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>dep1</name>
+  <description />
+  <settings>
+    <options>
+      <option name="supportTestRetry" value="true" />
+    </options>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_1" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[echo "##teamcity[testStarted name='MyTest.test1']"
+echo "##teamcity[testFailed type='comparisonFailure' name='MyTest.test1' message='failure message' details='message and stack trace' expected='expected value' actual='actual value']"
+echo "##teamcity[testFinished name='MyTest.test1']"
+echo "##teamcity[testStarted name='MyTest.test1']"
+echo "##teamcity[testFailed type='comparisonFailure' name='MyTest.test1' message='failure message' details='message and stack trace' expected='expected value' actual='actual value']"
+echo "##teamcity[testFinished name='MyTest.test1']"
+echo "##teamcity[testStarted name='MyTest.test1']"
+#echo "##teamcity[testFailed type='comparisonFailure' name='MyTest.test1' message='failure message' details='message and stack trace' expected='expected value' actual='actual value']"
+echo "##teamcity[testFinished name='MyTest.test1']"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings />
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

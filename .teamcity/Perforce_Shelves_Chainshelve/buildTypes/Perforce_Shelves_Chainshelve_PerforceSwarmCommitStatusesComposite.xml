@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>perforce swarm commit statuses composite</name>
+  <description />
+  <settings>
+    <options>
+      <option name="artifactRules" value="+:a.txt =&gt; ./" />
+      <option name="buildConfigurationType" value="COMPOSITE" />
+      <option name="buildNumberPattern" value="buildfromregular%build.counter%" />
+      <option name="showDependenciesChanges" value="true" />
+    </options>
+    <disabled-settings>
+      <setting-ref ref="BUILD_EXT_1" />
+      <setting-ref ref="RUNNER_1" />
+      <setting-ref ref="RUNNER_2" />
+      <setting-ref ref="TRIGGER_1" />
+    </disabled-settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_1" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="ls" />
+          <param name="teamcity.step.mode" value="execute_if_failed" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_2" name="" type="gradle-runner">
+        <parameters>
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tool.jacoco" value="%teamcity.tool.jacoco.DEFAULT%" />
+          <param name="ui.gradleRUnner.gradle.build.file" value="secondpsserver/build.gradle" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="clean build" />
+          <param name="ui.gradleRunner.gradle.wrapper.path" value="secondpsserver" />
+          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_UtilitiesPerforceServer" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="TRIGGER_1" type="perforceShelveTrigger">
+        <parameters>
+          <param name="clDescriptionKeyword" value="#teamcity" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <build-extensions>
+      <extension id="BUILD_EXT_1" type="splitTests">
+        <parameters>
+          <param name="numberOfParts" value="3" />
+        </parameters>
+      </extension>
+      <extension id="BUILD_EXT_2" type="commit-status-publisher">
+        <parameters>
+          <param name="publisherId" value="perforceSwarmPublisher" />
+          <param name="secure:swarmPassword" value="credentialsJSON:fe3bd14d-6b3d-49e1-a7ae-c0ea9f02df85" />
+          <param name="swarmUrl" value="http://172.20.160.17" />
+          <param name="swarmUser" value="nastasia.chubatova" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <dependencies>
+      <depend-on sourceBuildTypeId="Perforce_Shelves_Chainshelve_Dep1">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="sync-revisions" value="false" />
+        </options>
+      </depend-on>
+      <depend-on sourceBuildTypeId="Perforce_Shelves_Chainshelve_Dep2">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="sync-revisions" value="false" />
+        </options>
+      </depend-on>
+      <depend-on sourceBuildTypeId="Perforce_Shelves_Chainshelve_Dep3">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="sync-revisions" value="false" />
+        </options>
+      </depend-on>
+      <depend-on sourceBuildTypeId="Perforce_Shelves_Chainshelve_Dep4">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="sync-revisions" value="false" />
+        </options>
+      </depend-on>
+      <depend-on sourceBuildTypeId="Perforce_Shelves_Chainshelve_Dep5">
+        <options>
+          <option name="run-build-if-dependency-failed" value="RUN_ADD_PROBLEM" />
+          <option name="sync-revisions" value="false" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

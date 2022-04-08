@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>a_shelve2</name>
+  <description />
+  <settings>
+    <options>
+      <option name="artifactRules" value="+:a.txt =&gt; ./" />
+      <option name="buildNumberPattern" value="buildfromregular%build.counter%" />
+    </options>
+    <disabled-settings>
+      <setting-ref ref="RUNNER_1" />
+      <setting-ref ref="TRIGGER_1" />
+    </disabled-settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_1" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="ls ChubatovaGradleTests" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_2" name="" type="gradle-runner">
+        <parameters>
+          <param name="teamcity.build.workingDir" value="firstroot" />
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tool.jacoco" value="%teamcity.tool.jacoco.DEFAULT%" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="test" />
+          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_3" name="Gradle another root" type="gradle-runner">
+        <parameters>
+          <param name="teamcity.build.workingDir" value="secondpsserver" />
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
+          <param name="teamcity.step.mode" value="execute_if_failed" />
+          <param name="teamcity.tool.jacoco" value="%teamcity.tool.jacoco.DEFAULT%" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="test" />
+          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_4" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="echo a &gt; a.txt" />
+          <param name="teamcity.step.mode" value="execute_if_failed" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_UtilitiesPerforceServer" />
+      <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_HttpsGithubComAChubatovaComposite">
+        <checkout-rule rule="+:. =&gt; gitcomposite" />
+      </vcs-entry-ref>
+      <vcs-entry-ref root-id="HttpsGithubComChubatovaTigerRootroot" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="TRIGGER_1" type="perforceShelveTrigger">
+        <parameters>
+          <param name="clDescriptionKeyword" value="teamcity" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <cleanup />
+  </settings>
+</build-type>
+
