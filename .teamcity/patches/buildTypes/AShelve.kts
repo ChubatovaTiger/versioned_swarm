@@ -1,6 +1,7 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildFeatures.CommitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.ui.*
 
@@ -24,7 +25,7 @@ changeBuildType(RelativeId("AShelve")) {
     }
 
     features {
-        remove {
+        val feature1 = find<CommitStatusPublisher> {
             commitStatusPublisher {
                 publisher = swarm {
                     serverUrl = "http://localhost:8114"
@@ -32,6 +33,14 @@ changeBuildType(RelativeId("AShelve")) {
                     token = "credentialsJSON:1bf63ce2-b677-4835-9968-0c2427a18d8b"
                     createSwarmTest = false
                 }
+            }
+        }
+        feature1.apply {
+            publisher = swarm {
+                serverUrl = "http://localhost:8111"
+                username = "jetbrains"
+                token = "credentialsJSON:1bf63ce2-b677-4835-9968-0c2427a18d8b"
+                createSwarmTest = true
             }
         }
     }
