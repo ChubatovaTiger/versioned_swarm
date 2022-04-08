@@ -5,7 +5,6 @@
   <settings>
     <options>
       <option name="artifactRules" value="+:a.txt =&gt; ./" />
-      <option name="buildConfigurationType" value="COMPOSITE" />
       <option name="buildNumberPattern" value="buildfromregular%build.counter%" />
       <option name="showDependenciesChanges" value="true" />
     </options>
