@@ -80,7 +80,7 @@
       </extension>
       <extension id="BUILD_EXT_47" type="commit-status-publisher">
         <parameters>
-          <param name="createSwarmTest" value="true" />
+          <param name="createSwarmTest" value="false" />
           <param name="publisherId" value="perforceSwarmPublisher" />
           <param name="secure:swarmPassword" value="credentialsJSON:1bf63ce2-b677-4835-9968-0c2427a18d8b" />
           <param name="swarmUrl" value="http://localhost:8111" />
