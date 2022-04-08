@@ -57,7 +57,7 @@ object AShelve_6 : BuildType({
                 serverUrl = "http://localhost:8114"
                 username = "jetbrains"
                 token = "credentialsJSON:1bf63ce2-b677-4835-9968-0c2427a18d8b"
-                createSwarmTest = true
+                createSwarmTest = false
             }
         }
     }
