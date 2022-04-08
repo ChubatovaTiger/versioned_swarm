@@ -68,7 +68,7 @@
     <build-triggers>
       <build-trigger id="TRIGGER_1" type="perforceShelveTrigger">
         <parameters>
-          <param name="clDescriptionKeyword" value="#teamcity" />
+          <param name="clDescriptionKeyword" value="#review" />
         </parameters>
       </build-trigger>
     </build-triggers>
