@@ -2,9 +2,8 @@
 <vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="perforce" modification-check-interval="180000" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
   <name>local_perforce_server</name>
   <param name="client" value="chubatova" />
-  <param name="client-mapping" value="//depot/... //team-city-agent/..." />
   <param name="p4-exe" value="p4" />
-  <param name="port" value="localhost:1666" />
+  <param name="port" value="172.29.14.107:1666" />
   <param name="use-client" value="true" />
   <param name="user" value="Administrator" />
   <param name="workspace-options"><![CDATA[Options:        noallwrite clobber nocompress unlocked nomodtime rmdir
