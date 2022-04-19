@@ -61,9 +61,6 @@
     </build-runners>
     <vcs-settings>
       <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_UtilitiesPerforceServer" />
-      <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_HttpsGithubComChubatovaTigerChubatovaGradleTestsBackup">
-        <checkout-rule rule=". =&gt; gtests" />
-      </vcs-entry-ref>
     </vcs-settings>
     <requirements />
     <build-triggers>
