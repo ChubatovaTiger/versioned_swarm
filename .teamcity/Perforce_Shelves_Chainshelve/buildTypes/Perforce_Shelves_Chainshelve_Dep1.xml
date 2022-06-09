@@ -24,7 +24,9 @@ echo "##teamcity[testFinished name='MyTest.test1']"]]></param>
         </parameters>
       </runner>
     </build-runners>
-    <vcs-settings />
+    <vcs-settings>
+      <vcs-entry-ref root-id="Perforce_Shelves_Chainshelve_UtilitiesPerforceServer" />
+    </vcs-settings>
     <requirements />
     <build-triggers />
     <cleanup />
